@@ -1,0 +1,22 @@
+﻿@using DrinkAndGo.ViewModels
+@model DrinkListViewModel
+
+@{
+    ViewData["Title"] = "Drinks";
+}
+
+<div class="text-center">
+    <div>
+        <h2>All drinks are shown here</h2>
+    </div>
+
+    <h2>@Model.CurrentCategory</h2>
+</div>
+
+
+@foreach (var drink in Model.Drinks)
+{
+    <h2> Name : @drink.Name</h2>
+    <h2> Price : @drink.Price.ToString("c")</h2>
+
+}
