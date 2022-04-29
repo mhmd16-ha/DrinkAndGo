@@ -14,9 +14,8 @@
 </div>
 
 
-@foreach (var drink in Model.Drinks)
+@foreach (Drink drink in Model.Drinks)
 {
-    <h2> Name : @drink.Name</h2>
-    <h2> Price : @drink.Price.ToString("c")</h2>
+<partial name="_DrinksSummary" model="drink" />
 
 }

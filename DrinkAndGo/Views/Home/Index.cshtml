@@ -1,0 +1,23 @@
+﻿@model HomeViewModel
+
+
+@{
+    ViewData["Title"] = "Home";
+}
+
+
+<div class="container">
+
+    <partial name="_Carousel" />
+
+    <h2>Prefered drinks of the week</h2>
+    <h4>Clients preferences - just for you!</h4>
+
+
+    @foreach (var drink in Model.PreferredDrinks)
+    {
+        <partial name="_DrinksSummary" model="drink" />
+    }
+
+
+</div>
