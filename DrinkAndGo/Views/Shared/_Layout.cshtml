@@ -10,7 +10,32 @@
 </head>
 
 <body>
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a asp-controller="Home" asp-action="Index">DrinkAndGo</a></li>
+                    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                    @*@await Component.InvokeAsync("CategoryMenu")*@
+                    <li><a asp-controller="Contact" asp-action="Index">Contact Us</a></li>
+                    @await Component.InvokeAsync("ShoppingCartSummary")
+                </ul>
 
+                <ul class="text-left">
+                    @*<li>@await Html.PartialAsync("_LoginPartial")</li>*@
+                </ul>
+
+            </div>
+        </div>
+    </nav>
     <div>
         @RenderBody()
     </div>
