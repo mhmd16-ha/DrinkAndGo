@@ -1,9 +1,11 @@
 ﻿using DrinkAndGo.Data.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace DrinkAndGo.Data
 {
-    public class AppDbContext:DbContext
+    public class AppDbContext : IdentityDbContext<IdentityUser>
     {
         public AppDbContext(DbContextOptions<AppDbContext> options):base(options)
         {
@@ -12,6 +14,10 @@ namespace DrinkAndGo.Data
         public DbSet<Drink> Drinks { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<ShopingCartItem> ShopingCartItems { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
+
+
 
     }
 }

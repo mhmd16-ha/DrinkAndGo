@@ -1,11 +1,14 @@
 using DrinkAndGo.Data;
+using DrinkAndGo.Data.Interfaces;
 using DrinkAndGo.Data.Mock;
 using DrinkAndGo.Data.Models;
 using DrinkAndGo.Data.Models.Interfaces;
+using DrinkAndGo.Data.Repositores;
 using DrinkAndGo.Data.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,13 +34,21 @@ namespace DrinkAndGo
         {
             services.AddDbContext<AppDbContext>
                 (options => options.UseSqlServer(_configuration.GetConnectionString("DefaultDatabase")));
+
+            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+               .AddEntityFrameworkStores<AppDbContext>();
             services.AddTransient<IDrinkRepository, DrinkRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
+            services.AddTransient<IOrderRepository, OrderRepository>();
+
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped(sp => ShopingCart.GetCart(sp));
 
+            services.AddControllersWithViews();
             services.AddSession();
             services.AddMvc();
+            services.AddRazorPages();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,9 +68,9 @@ namespace DrinkAndGo
 
             app.UseSession();
 
-            //app.UseAuthentication();
+            app.UseAuthentication();
 
-            //app.UseAuthorization();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

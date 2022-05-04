@@ -2,14 +2,14 @@
 
 <html>
 <head>
-      <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width" />
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet" type="text/css" />
     <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/Site.css" rel="stylesheet" />
     <title>@ViewBag.Title</title>
 </head>
-
 <body>
+
     <nav class="navbar navbar-inverse">
         <div class="container">
             <div class="navbar-header">
@@ -22,22 +22,40 @@
             </div>
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-controller="Home" asp-action="Index">DrinkAndGo</a></li>
                     <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-                    @*@await Component.InvokeAsync("CategoryMenu")*@
+                    @await Component.InvokeAsync("CategoryMenu")
                     <li><a asp-controller="Contact" asp-action="Index">Contact Us</a></li>
                     @await Component.InvokeAsync("ShoppingCartSummary")
                 </ul>
 
                 <ul class="text-left">
-                    @*<li>@await Html.PartialAsync("_LoginPartial")</li>*@
+                    <li>@await Html.PartialAsync("_LoginPartial")</li>
                 </ul>
 
             </div>
         </div>
     </nav>
-    <div>
-        @RenderBody()
+
+    <div class="container">
+        <div>
+            @RenderBody()
+        </div>
+
     </div>
+
+    <hr />
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            All rights reserved &copy; @DateTime.UtcNow.Year <a href="https://github.com/mahmmoudkinawy" target="_blank"> Kinawy's GitHub </a>
+        </div>
+    </footer>
+
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+
 </body>
 </html>

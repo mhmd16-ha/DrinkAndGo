@@ -1,5 +1,4 @@
-﻿@using DrinkAndGo.ViewModels
-@model DrinkListViewModel
+﻿@model DrinkListViewModel
 
 @{
     ViewData["Title"] = "Drinks";
@@ -10,12 +9,12 @@
         <h2>All drinks are shown here</h2>
     </div>
 
+
     <h2>@Model.CurrentCategory</h2>
 </div>
 
 
-@foreach (Drink drink in Model.Drinks)
+@foreach (var drink in Model.Drinks)
 {
-<partial name="_DrinksSummary" model="drink" />
-
+    <partial name="_DrinksSummary" model="drink" />
 }
